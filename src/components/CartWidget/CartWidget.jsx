@@ -4,7 +4,10 @@ import ShoppingCart from "@mui/icons-material/ShoppingCart";
 
 const CartWidget = () => {
   return (
-    <div><ShoppingCart /></div>
+    <div className='icon-shop'>
+      <ShoppingCart />
+      <div className='count-cart'>3</div>
+    </div>
   )
 }
 
