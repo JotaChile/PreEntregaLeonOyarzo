@@ -1,0 +1,17 @@
+.icon-shop {
+    margin-right: 1rem;
+    position: relative;
+}
+
+.count-cart {
+    background: #ef3636;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    color: white;
+    font-size: 10px;
+    top: -9px;
+    right: -4px;
+    position: absolute;
+}

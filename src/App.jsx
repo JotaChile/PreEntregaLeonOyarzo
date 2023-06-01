@@ -1,14 +1,14 @@
 import React from 'react'
 import './App.css'
-import NavBar from './componentes/NavBar/NavBar'
-import ItemListContainer from './componentes/ItemListContainer/ItemListContainer'
+import NavBar from './components/NavBar/NavBar'
+import ItemListContainer from './components/ItemListContainer/ItemListContainer'
 
 const App = () => {
 
   return (
     <div>
       <NavBar/>
-      <ItemListContainer greetings={'Hola mundo'}/>
+      <ItemListContainer greetings={'Bienvenido a Aguas JC'}/>
     </div>
     
 
