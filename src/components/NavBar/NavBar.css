@@ -5,6 +5,7 @@
     margin: 0 auto;
     margin-top: 5px;
     margin-bottom: 5px;
+    cursor: pointer;
 }
 
 .headerClass {
@@ -62,4 +63,8 @@ li:hover{
     display: flex;
     justify-content: right;
     align-items: center;
+}
+
+.menu-icon {
+    margin-left: 10px;
 }

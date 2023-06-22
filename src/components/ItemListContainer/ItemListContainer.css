@@ -1,3 +1,13 @@
 .greetinsClass {
-    margin: 3rem;
+    text-align: center;
+    width: 400px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.center-div {
+    margin-top: 50px;
+    text-align: center;
+    margin-bottom: 50px;
 }
