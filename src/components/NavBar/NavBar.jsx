@@ -2,18 +2,30 @@ import React, { useState } from 'react';
 import './NavBar.css'
 import CartWidget from '../CartWidget/CartWidget'
 import logo from '../../../src/assets/logo.png';
-import MenuLogo from "@mui/icons-material/Menu";
 import 'bootstrap/dist/css/bootstrap.css';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import { Link, useNavigate, Outlet  } from 'react-router-dom';
 
 const NavBar = () => {
 
-  const [isListVisible, setIsListVisible] = useState(false);
+  const navigate = useNavigate();
 
-  const capturarClick = () => {
-    setIsListVisible(!isListVisible);
+  const navigateToHome = () => {
+    navigate('/');
   };
+
+
+  const navigateToPromociones = () => {
+    navigate(`/category/${1}`);
+  };
+
+  const navigateToBL = () => {
+    navigate(`/bases-legales/`);
+  };
+
+
 
   return (
     <header className="headerClass">
@@ -22,23 +34,27 @@ const NavBar = () => {
         <Col className="primera-columna">
             <nav className='navClass'>
 
-                    <MenuLogo className='menuIcon' onClick={capturarClick}/>
 
+                  <NavDropdown className='menu-icon' id="nav-dropdown-dark-example" title="Menu" menuVariant="light">
+                    
+                                <NavDropdown.Item onClick={navigateToHome}>Inicio</NavDropdown.Item>
+                                <NavDropdown.Item onClick={navigateToPromociones}>Promociones</NavDropdown.Item>
 
-                    {isListVisible && (
-                      <ul className='ulclass animate__animated animate__fadeIn'>
-                        <li onClick={capturarClick}>Pack inicial</li>
-                        <li onClick={capturarClick}>Recargas</li>
-                        <li onClick={capturarClick}>Botellones</li>
-                      </ul>
-                    )}
+      
+
+                                <NavDropdown.Divider />
+
+                                <NavDropdown.Item onClick={navigateToBL}>
+                                  Bases Legales
+                                </NavDropdown.Item>
+                  </NavDropdown>
 
 
             </nav>
         </Col>
 
         <Col className="segunda-columna">
-            <img className='logo' src={logo} alt="logo aguasjc" />
+            <img  onClick={navigateToHome} className='logo' src={logo} alt="logo aguasjc" />
         </Col>
 
         <Col className="tercera-columna">
