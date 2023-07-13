@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './NavBar.css'
 import CartWidget from '../CartWidget/CartWidget'
 import logo from '../../../src/assets/logo.png';
@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { Link, useNavigate, Outlet  } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 
 const NavBar = () => {
 
@@ -18,7 +18,11 @@ const NavBar = () => {
 
 
   const navigateToPromociones = () => {
-    navigate(`/category/${1}`);
+    navigate(`/categoria/${'2'}`);
+  };
+
+  const navigateToExtras = () => {
+    navigate(`/categoria/${'3'}`);
   };
 
   const navigateToBL = () => {
@@ -37,16 +41,14 @@ const NavBar = () => {
 
                   <NavDropdown className='menu-icon' id="nav-dropdown-dark-example" title="Menu" menuVariant="light">
                     
-                                <NavDropdown.Item onClick={navigateToHome}>Inicio</NavDropdown.Item>
-                                <NavDropdown.Item onClick={navigateToPromociones}>Promociones</NavDropdown.Item>
+                    <NavDropdown.Item onClick={navigateToHome}>Inicio</NavDropdown.Item>
+                    <NavDropdown.Item onClick={navigateToPromociones}>Promociones</NavDropdown.Item>
+                    <NavDropdown.Item onClick={navigateToExtras}>Envases y recargas</NavDropdown.Item>
+                    <NavDropdown.Divider />
 
-      
-
-                                <NavDropdown.Divider />
-
-                                <NavDropdown.Item onClick={navigateToBL}>
-                                  Bases Legales
-                                </NavDropdown.Item>
+                    <NavDropdown.Item onClick={navigateToBL}>
+                      Bases Legales
+                    </NavDropdown.Item>
                   </NavDropdown>
 
 
