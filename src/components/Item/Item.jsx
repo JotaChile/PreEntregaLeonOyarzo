@@ -3,9 +3,9 @@ import "./Item.css"
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
-
-const Item = ({id, name, price, desc, img}) => {
+const Item = ({id, nombre, precio, desc, img}) => {
 
     const navigate = useNavigate();
 
@@ -26,23 +26,20 @@ const Item = ({id, name, price, desc, img}) => {
             } catch (e) {}
     }
 
-    const navigateToItemDetail = (id) => {
-        navigate(`/item/${id}`);
-    }
-
-
   return (
     <div className='col-lg-2 col-md-6 col-sm-8 col-xs-12'>
         <Card className="card-box">
             <Card.Img variant="top" className='card-img' src={img} />
             <Card.Body>
-                <Card.Title>{name}</Card.Title>
+                <Card.Title>{nombre}</Card.Title>
                 <Card.Text>
-                   ${formatMoney(price)}
+                   ${formatMoney(precio)}
                 </Card.Text>
 
                 <div className="container-btn">
-                    <Button onClick={() => navigateToItemDetail(id)} className="card-btn" variant="primary">Ver detalle</Button>
+                    <Link to={`/item/${id}`}>
+                        <Button className="card-btn" variant="primary">Ver detalle</Button>
+                    </Link>
                 </div>
             </Card.Body>
         </Card>

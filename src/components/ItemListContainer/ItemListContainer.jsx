@@ -1,45 +1,40 @@
 import React, { useEffect, useState } from 'react'
 import './ItemListContainer.css'
 import ItemList from '../ItemList/ItemList';
-import { getProducts } from '../../asyncmock';
-import { getPromociones } from '../../asyncmock';
-import Spinner from 'react-bootstrap/Spinner';
 import Alert from 'react-bootstrap/Alert';
 import { useParams } from 'react-router-dom';
+import {collection, query, getDocs, where} from 'firebase/firestore'
+import { db } from '../../services/config'
 
 const ItemListContainer = ({greetings}) => {
 
-  const [showDiv, setShowDiv] = useState(false);
-  const { id } = useParams();
-  const categoryId = parseInt(id);
+
+  const { idCategoria } = useParams();
+  const [productos, setProductos] = useState([])
+
+  if(idCategoria == "2"){
+    greetings = "Pack y promociones"
+  }
+
+  if(idCategoria == "3"){
+    greetings = "Envases y recargas"
+  }
 
 
-  const [products, setProducts] = useState([]);
+  useEffect( () => {
+    const misProductos = idCategoria ? query(collection(db, "inventario"),where("idCat", "==", idCategoria)) : collection(db, "inventario");
 
-  useEffect(()=>{
+    getDocs(misProductos)
+        .then( res => {
+            const nuevosProductos = res.docs.map( doc => {
+                const data = doc.data();
+                return {id: doc.id, ...data}
+            })
+            setProductos(nuevosProductos);
+        })
+        .catch(error => console.log("error", error))
+}, [idCategoria])
 
-    setShowDiv(false)
-
-    if (categoryId == 1) {
-
-      setTimeout(() => {
-        setShowDiv(true);
-      },2000)
-
-      getPromociones()
-      .then(res => setProducts(res))
-
-    } else{
-
-      setTimeout(() => {
-        setShowDiv(true);
-      },2000)
-
-      getProducts()
-      .then(res => setProducts(res))
-    }
-
-  }, [categoryId])
 
   const divStyle = {
     margin: '0 auto'
@@ -57,21 +52,14 @@ const ItemListContainer = ({greetings}) => {
       </div>
 
 
-      {!showDiv && (
-        <div className='center-div'>
-          <Spinner animation="border" variant="primary" />
+
+
+      <div className='row'>
+        <div className='col-lg-9 col-md-9 col-sm-9 col-xs-9' style={divStyle}>
+            <ItemList productos={productos}/>
         </div>
-      )}
+      </div>
 
-      {showDiv && (
-
-          <div className='row'>
-            <div className='col-lg-9 col-md-9 col-sm-9 col-xs-9' style={divStyle}>
-                <ItemList products={products}/>
-            </div>
-          </div>
-
-      )}
 
 
 

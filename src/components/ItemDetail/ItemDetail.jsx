@@ -3,11 +3,13 @@ import "./ItemDetail.css"
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { useState } from 'react';
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react'
+import { CarritoContext } from '../../context/CarritoContext';
+import ItemCount from '../ItemCount/ItemCount';
+import { Link } from 'react-router-dom'
 
-const ItemDetail = ({id, name, price, desc, img, pack}) => {
+const ItemDetail = ({id, nombre, precio, desc, img, stock}) => {
 
   const navigate = useNavigate();
 
@@ -28,22 +30,16 @@ const ItemDetail = ({id, name, price, desc, img, pack}) => {
     } catch (e) {}
   }
 
-  const stock = 10; //Hardcodeado por ahora
 
-  const [cantidad, setCantidad] = useState(1);
+  const [agregarCantidad, setAgregarCantidad] = useState(0);
+  const {agregarProducto} = useContext(CarritoContext);
 
+  const manejadorCantidad = (cantidad) => {
+    setAgregarCantidad(cantidad);
+    const item = {id, nombre, precio, img};
+    agregarProducto(item, cantidad);
+  }
 
-  const addCantidad = () => {
-    if (cantidad < stock) {
-      setCantidad(cantidad + 1);
-    }
-  };
-  
-  const removeCantidad = () => {
-    if (cantidad > 1) {
-      setCantidad(cantidad - 1);
-    }
-  };
 
 
   const navigateTohome = () => {
@@ -55,25 +51,24 @@ const ItemDetail = ({id, name, price, desc, img, pack}) => {
         <Card className="card-box-individual">
             <Card.Img variant="top" className='card-img-individual' src={img} />
             <Card.Body>
-                <Card.Title>{name}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">${formatMoney(price)}</Card.Subtitle>
+                <Card.Title>{nombre}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">${formatMoney(precio)}</Card.Subtitle>
                 <Card.Text>
                   {desc}
                 </Card.Text>
 
                 
-                <div className='container-contador'>
-                  <RemoveIcon onClick={removeCantidad} className='icon-remove'/>
-                  <span className='span-cantidad'>{cantidad}</span>
-                  <AddIcon onClick={addCantidad} disabled={cantidad === stock} className='icon-add'/>
-                </div>
-
                 <div className="container-btn">
-                    <Button onClick={() => navigateToItemDetail(id)} className="card-btn-individual" variant="secondary">Agregar al carrito</Button>
-                    <Button style={{ marginTop: '10px' }} className="card-btn-individual" variant="primary">Comprar ahora</Button>
+                  {
+                    agregarCantidad > 0 ? (
+                    <Link to="/cart">
+                      <Button style={{ marginTop: '10px' }} className="card-btn-individual" variant="primary">Comprar ahora</Button>
+                    </Link>) : (<ItemCount inicial={1} stock={stock} funcionAgregar={manejadorCantidad}/>)
+                  }
 
-                    <Button style={{ marginTop: '20px' }} onClick={() => navigateTohome()} className="regresar" variant="primary">Regresar</Button>
+                    <Button style={{ marginTop: '20px' }} onClick={() => navigateTohome()} className="regresar-btn" variant="primary">Regresar</Button>
                 </div>
+
             </Card.Body>
         </Card>
     </div>

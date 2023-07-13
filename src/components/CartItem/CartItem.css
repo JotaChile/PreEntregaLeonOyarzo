@@ -1,0 +1,16 @@
+.card-item {
+    box-shadow: #63636333 0 2px 8px;
+    width: 95%;
+    margin: 0 auto;
+    margin: 10px;
+    position: relative
+}
+
+.delete-icon {
+    position: absolute;
+    right: 10px;
+    font-size: 35px;
+    top: 10px;
+    color: #f15454;
+    cursor: pointer;
+}

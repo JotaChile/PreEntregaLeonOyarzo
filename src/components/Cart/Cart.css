@@ -1,0 +1,57 @@
+.greetinsClass {
+    text-align: center;
+    width: 400px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.card-box-individual {
+    box-shadow: #63636333 0 2px 8px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.card-img-individual {
+    width: 250px;
+    height: 250px;
+    text-align: center;
+    margin:  0 auto;
+}
+
+.margin-div {
+    margin: 3rem;
+}
+
+.btn-end {
+    width: 200px;
+    padding: 10px;
+    background-color: #1b4bb4;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 30px;
+    text-decoration: none !important;
+}
+
+.linklabel {
+    text-decoration: none !important;
+    color: white !important;
+}
+
+.div-vaciar {
+    width: 200px;
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none !important;
+    margin-bottom: 30px;
+}
+
+.firstdiv {
+    margin-top: 40px;
+}

@@ -57,12 +57,12 @@
 }
 
 
-.regresar-btn {
-    background: none !important;
-    color: gray !important;
-    border: none !important;
-    display: block !important;
-    margin: 0 auto !important;
-    margin-top: 20px !important;
-    text-decoration: underline !important;
+.regresar {
+    margin-top: 20px;
+    background: none;
+    border: none;
+    color: gray;
+    text-transform: lowercase;
+    text-decoration: underline;
+    font-size: 14px;
 }
